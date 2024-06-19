@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { BasePage } from "./components/base-page";
 import { HomePage } from "./features/home/pages/home-page";
+import { ParticipantPage } from "./features/home/pages/participant-page";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -15,6 +16,17 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <HomePage />,
+				loader: HomePage.loader,
+			},
+			{
+				path: "/participants",
+				children: [
+					{
+						path: ":participantId",
+						element: <ParticipantPage />,
+						loader: ParticipantPage.loader,
+					},
+				],
 			},
 		],
 	},
