@@ -21,11 +21,19 @@ export function Participants({
 				{participants.map((participant) => {
 					return (
 						<Link
-							className="transition-transform hover:scale-105"
+							className="flex items-center gap-4 rounded-md border p-6 transition-transform hover:scale-105"
 							key={participant.id}
 							to={`/participants/${participant.id}`}
 						>
-							<li className="space-y-2 rounded-md border p-6">
+							<img
+								src={participant.photoUrl}
+								width="56"
+								height="56"
+								alt={`Foto de perfil de ${participant.fullName}`}
+								className="aspect-square rounded-lg object-cover"
+							/>
+
+							<li className="space-y-2">
 								<h3 className="font-medium">{participant.fullName}</h3>
 
 								<p className="text-muted-foreground">{participant.role}</p>
