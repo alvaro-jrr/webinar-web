@@ -9,6 +9,7 @@ export const Assignment = z.object({
 		.number()
 		.gt(0, "Debe ser mayor a 0")
 		.lte(100, "Debe ser menor o igual a 100"),
+	date: z.string().date("Debe ser una fecha"),
 });
 
 export const AssignmentDelivery = Assignment.extend({

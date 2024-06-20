@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { ExternalLink } from "lucide-react";
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 
@@ -83,6 +84,7 @@ export function ParticipantPage() {
 						<TableHeader>
 							<TableRow>
 								<TableHead>Tarea</TableHead>
+								<TableHead>Fecha</TableHead>
 								<TableHead>Ponderación</TableHead>
 								<TableHead>Nota</TableHead>
 								<TableHead>Entrega</TableHead>
@@ -94,6 +96,10 @@ export function ParticipantPage() {
 								<TableRow key={assignment.id}>
 									<TableCell className="font-medium">
 										{assignment.title}
+									</TableCell>
+
+									<TableCell>
+										{dayjs(assignment.date).format("DD/MM/YYYY")}
 									</TableCell>
 
 									<TableCell>{assignment.weighting}%</TableCell>
