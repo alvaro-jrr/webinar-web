@@ -1,12 +1,9 @@
-// Supports weights 100-900
 import "@fontsource-variable/dm-sans";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { BasePage } from "./components/base-page";
-import { HomePage } from "./features/home/pages/home-page";
-import { ParticipantPage } from "./features/home/pages/participant-page";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -15,18 +12,27 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "/",
-				element: <HomePage />,
-				loader: HomePage.loader,
+				lazy: async () => {
+					const { HomePage } = await import("./features/home/pages/home-page");
+
+					return {
+						Component: HomePage,
+						loader: HomePage.loader,
+					};
+				},
 			},
 			{
-				path: "/participants",
-				children: [
-					{
-						path: ":participantId",
-						element: <ParticipantPage />,
+				path: "/participants/:participantId",
+				lazy: async () => {
+					const { ParticipantPage } = await import(
+						"./features/home/pages/participant-page"
+					);
+
+					return {
+						Component: ParticipantPage,
 						loader: ParticipantPage.loader,
-					},
-				],
+					};
+				},
 			},
 		],
 	},
