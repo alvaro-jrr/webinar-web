@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 
 import { assistantsApi } from "@/api/assistants-api";
 
@@ -20,6 +20,7 @@ export function CreateAssistantPage() {
 		register,
 		handleSubmit,
 		reset,
+		control,
 		formState: { errors, isSubmitting },
 	} = useForm<CreateAssistantType>({
 		resolver: zodResolver(CreateAssistant),
@@ -29,6 +30,7 @@ export function CreateAssistantPage() {
 			company: "",
 			position: "",
 			interests: "",
+			notifyEvent: false,
 		},
 	});
 
@@ -65,7 +67,7 @@ export function CreateAssistantPage() {
 				</p>
 			</div>
 
-			<form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+			<form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
 				<div className="space-y-4">
 					<TextField
 						id="full-name"
@@ -129,11 +131,23 @@ export function CreateAssistantPage() {
 						isOptional
 					/>
 
-					<CheckboxField
-						id="confirm-notifications"
-						labelProps={{
-							children:
-								"Estoy de acuerdo con recibir recordatorios al correo sobre el evento",
+					<Controller
+						name="notifyEvent"
+						control={control}
+						render={({ field }) => {
+							return (
+								<CheckboxField
+									id="confirm-notifications"
+									labelProps={{
+										children:
+											"Estoy de acuerdo con recibir recordatorios al correo sobre el evento",
+									}}
+									checkboxProps={{
+										checked: field.value,
+										onCheckedChange: field.onChange,
+									}}
+								/>
+							);
 						}}
 					/>
 				</div>

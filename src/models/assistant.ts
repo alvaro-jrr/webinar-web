@@ -20,6 +20,7 @@ export const Assistant = z.object({
 	),
 	interests: z.nullable(z.string()),
 	isConfirmed: z.boolean(),
+	notifyEvent: z.boolean(),
 });
 
 export const CreateAssistant = Assistant.omit({
