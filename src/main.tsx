@@ -35,16 +35,34 @@ const router = createBrowserRouter([
 				},
 			},
 			{
-				path: "/assistants/enroll",
-				lazy: async () => {
-					const { CreateAssistantPage } = await import(
-						"./features/assistants/pages/create-assistant-page"
-					);
+				path: "/assistants/",
+				children: [
+					{
+						path: "enroll",
+						lazy: async () => {
+							const { CreateAssistantPage } = await import(
+								"./features/assistants/pages/create-assistant-page"
+							);
 
-					return {
-						Component: CreateAssistantPage,
-					};
-				},
+							return {
+								Component: CreateAssistantPage,
+							};
+						},
+					},
+					{
+						path: "confirm",
+						lazy: async () => {
+							const { ConfirmAssistantPage } = await import(
+								"./features/assistants/pages/confirm-assistant-page"
+							);
+
+							return {
+								Component: ConfirmAssistantPage,
+								loader: ConfirmAssistantPage.loader,
+							};
+						},
+					},
+				],
 			},
 		],
 	},

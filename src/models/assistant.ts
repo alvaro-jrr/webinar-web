@@ -12,13 +12,13 @@ export const Assistant = z.object({
 		.min(1, "Debe ingresar un email")
 		.max(50, "Debe ser menor o igual a 50 caracteres")
 		.email("Debe ser un email valido"),
-	company: z.optional(
+	company: z.nullable(
 		z.string().max(50, "Debe ser menor o igual a 50 caracteres"),
 	),
-	position: z.optional(
+	position: z.nullable(
 		z.string().max(50, "Debe ser menor o igual a 50 caracteres"),
 	),
-	interests: z.optional(z.string()),
+	interests: z.nullable(z.string()),
 	isConfirmed: z.boolean(),
 });
 
