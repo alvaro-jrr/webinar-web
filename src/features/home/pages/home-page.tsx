@@ -1,5 +1,5 @@
 import { Calendar } from "lucide-react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 import { participantsApi } from "@/api/participants-api";
 
@@ -23,7 +23,7 @@ export function HomePage() {
 	>;
 
 	return (
-		<Main className="max-w-screen-lg space-y-24 py-28">
+		<Main className="space-y-24 py-28">
 			<div className="w-full space-y-6">
 				<div className="space-y-4">
 					<p className="text-sm text-muted-foreground">Webinar</p>
@@ -44,7 +44,9 @@ export function HomePage() {
 					<span className="text-2xl font-medium">10 de Julio</span>
 				</div>
 
-				<Button size="lg">Inscribirme en el Webinar</Button>
+				<Button size="lg" asChild>
+					<Link to="/assistants/enroll">Inscribirme en el Webinar</Link>
+				</Button>
 			</div>
 
 			<img

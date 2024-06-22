@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { ExternalLink } from "lucide-react";
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { type LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 
 import { participantsApi } from "@/api/participants-api";
 
@@ -41,7 +41,7 @@ export function ParticipantPage() {
 	}
 
 	return (
-		<Main className="max-w-screen-lg space-y-24 py-28">
+		<Main className="space-y-24 py-28">
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 				<div>
 					<p className="text-sm text-muted-foreground">Participante</p>

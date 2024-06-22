@@ -11,7 +11,9 @@ export function Header() {
 						Webinar
 					</Link>
 
-					<Button variant="secondary">Inscribirme</Button>
+					<Button variant="secondary" asChild>
+						<Link to="/assistants/enroll">Inscribirme</Link>
+					</Button>
 				</div>
 			</nav>
 		</header>

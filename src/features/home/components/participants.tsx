@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { ParticipantType } from "@/models/participant";
+import { type ParticipantType } from "@/models/participant";
 
 export function Participants({
 	participants,

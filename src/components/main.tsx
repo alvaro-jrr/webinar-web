@@ -8,7 +8,7 @@ export function Main({
 	children?: React.ReactNode;
 }) {
 	return (
-		<main className={cn("container flex-1", className)}>
+		<main className={cn("container max-w-screen-lg flex-1", className)}>
 			{children ?? null}
 		</main>
 	);

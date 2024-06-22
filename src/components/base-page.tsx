@@ -1,6 +1,7 @@
 import { Outlet, ScrollRestoration } from "react-router-dom";
 
 import { Header } from "./header";
+import { Toaster } from "./ui/toaster";
 
 export function BasePage({ children }: { children?: React.ReactNode }) {
 	return (
@@ -10,6 +11,8 @@ export function BasePage({ children }: { children?: React.ReactNode }) {
 
 				{children ?? <Outlet />}
 			</div>
+
+			<Toaster />
 
 			<ScrollRestoration />
 		</>
