@@ -1,7 +1,5 @@
 import { Calendar } from "lucide-react";
-import { Link, useLoaderData } from "react-router-dom";
-
-import { participantsApi } from "@/api/participants-api";
+import { Link } from "react-router-dom";
 
 import techTalentHubLandingImage from "@/assets/tech-talent-hub-landing.webp";
 
@@ -11,17 +9,7 @@ import { Button } from "@/components/ui/button";
 import { About } from "../components/about";
 import { Participants } from "../components/participants";
 
-async function loader() {
-	const participants = await participantsApi.getAll();
-
-	return { participants };
-}
-
 export function HomePage() {
-	const { participants } = useLoaderData() as Awaited<
-		ReturnType<typeof loader>
-	>;
-
 	return (
 		<Main className="space-y-24 py-28">
 			<div className="w-full space-y-6">
@@ -59,9 +47,7 @@ export function HomePage() {
 
 			<About />
 
-			<Participants participants={participants} />
+			<Participants />
 		</Main>
 	);
 }
-
-HomePage.loader = loader;

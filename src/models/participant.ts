@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { AssignmentDelivery } from "./assignment";
+
 export const Participant = z.object({
 	id: z.string(),
 	fullName: z.string().min(1, "Debe tener un nombre"),
@@ -9,6 +11,7 @@ export const Participant = z.object({
 		.string()
 		.min(1, "Debe tener una foto de perfil")
 		.url("Debe ser una URL"),
+	assignments: AssignmentDelivery.array().default([]),
 });
 
 export type ParticipantType = z.infer<typeof Participant>;
