@@ -5,6 +5,7 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { assistantsApi } from "@/api/assistants-api";
 
 import { CreateAssistant, type CreateAssistantType } from "@/models/assistant";
+import { isErrorResponse } from "@/models/error-response";
 
 import { CheckboxField } from "@/components/checkbox-field";
 import { Main } from "@/components/main";
@@ -38,10 +39,18 @@ export function CreateAssistantPage() {
 	const onSubmit: SubmitHandler<CreateAssistantType> = async (assistant) => {
 		const response = await assistantsApi.enroll(assistant);
 
-		if (!response) {
+		if (!response || isErrorResponse(response)) {
+			const messages: { [key: number]: string } = {
+				400: "Ocurrió un error en la inscripción",
+				409: "Email ya está tomado",
+			};
+
 			toast({
 				title: "Error",
-				description: "Ha ocurrido un error en la inscripción",
+				description:
+					response && messages[response.status]
+						? messages[response.status]
+						: "Intente más tarde",
 				variant: "destructive",
 			});
 

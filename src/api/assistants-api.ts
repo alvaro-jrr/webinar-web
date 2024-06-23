@@ -20,11 +20,9 @@ export const assistantsApi = {
 
 		const parsed = createApiResponseSchema(Assistant).safeParse(json);
 
-		if (!parsed.success || isErrorResponse(parsed.data)) {
-			return null;
-		}
+		if (!parsed.success) return null;
 
-		return parsed.data.data;
+		return parsed.data;
 	},
 	/**
 	 * Confirms an assistant.
