@@ -36,6 +36,18 @@ const router = createBrowserRouter([
 				},
 			},
 			{
+				path: "/tutorials",
+				lazy: async () => {
+					const { TutorialsPage } = await import(
+						"./features/tutorials/pages/tutorials-page"
+					);
+
+					return {
+						Component: TutorialsPage,
+					};
+				},
+			},
+			{
 				path: "/assistants/",
 				children: [
 					{
