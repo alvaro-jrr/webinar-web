@@ -2,8 +2,6 @@ import dayjs from "dayjs";
 import { ExternalLink } from "lucide-react";
 import { type LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 
-import { participantsApi } from "@/api/participants-api";
-
 import { Main } from "@/components/main";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,21 +13,28 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 
+import { useParticipant } from "@/hooks/use-participant";
+
+import { ParticipantSkeleton } from "../components/participant-skeleton";
+
 async function loader({ params }: LoaderFunctionArgs) {
-	const participant = await participantsApi.getById(params.participantId ?? "");
-
-	const assignments = await participantsApi.getAssignmentsDelivery(
-		params.participantId ?? "",
-	);
-
-	return { participant, assignments };
+	return { id: params.participantId ?? "" };
 }
 
 export function ParticipantPage() {
-	const { participant, assignments } = useLoaderData() as Awaited<
-		ReturnType<typeof loader>
-	>;
+	const { id } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
+	const { participant, isLoading } = useParticipant(id, { assignments: true });
 
+	// Loader.
+	if (isLoading) {
+		return (
+			<Main className="space-y-24 py-28">
+				<ParticipantSkeleton />
+			</Main>
+		);
+	}
+
+	// No participant found.
 	if (!participant) {
 		return (
 			<Main className="grid place-content-center p-6">
@@ -92,7 +97,7 @@ export function ParticipantPage() {
 						</TableHeader>
 
 						<TableBody className="text-nowrap">
-							{assignments.map((assignment) => (
+							{participant.assignments.map((assignment) => (
 								<TableRow key={assignment.id}>
 									<TableCell className="font-medium">
 										{assignment.title}

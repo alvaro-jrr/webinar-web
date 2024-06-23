@@ -31,10 +31,16 @@ export const participantsApi = {
 	 *
 	 * @returns A promise that resolves with the participant.
 	 */
-	async getById(participantId: string) {
-		const response = await client(`participants/${participantId}`, {
-			method: "GET",
-		});
+	async getById(
+		participantId: string,
+		{ assignments } = { assignments: false },
+	) {
+		const response = await client(
+			`participants/${participantId}?assignments=${assignments}`,
+			{
+				method: "GET",
+			},
+		);
 
 		const json = await response?.json();
 
