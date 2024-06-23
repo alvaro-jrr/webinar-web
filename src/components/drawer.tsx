@@ -3,7 +3,14 @@ import { type ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 
 import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import {
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "./ui/sheet";
 
 export function Drawer({ children }: { children: ReactNode | ReactNode[] }) {
 	return (
@@ -16,7 +23,17 @@ export function Drawer({ children }: { children: ReactNode | ReactNode[] }) {
 				</Button>
 			</SheetTrigger>
 
-			<SheetContent>{children}</SheetContent>
+			<SheetContent>
+				<SheetHeader className="p-0">
+					<SheetTitle className="sr-only">Menú</SheetTitle>
+
+					<SheetDescription className="sr-only">
+						Navega a través de las diferentes opciones de la página
+					</SheetDescription>
+				</SheetHeader>
+
+				{children}
+			</SheetContent>
 		</Sheet>
 	);
 }
