@@ -11,7 +11,7 @@ export const assistantsApi = {
 	 * @returns A promise that resolves with the assistant on success.
 	 */
 	async enroll(assistant: CreateAssistantType) {
-		const response = await client("assistants/enroll", {
+		const response = await client("assistants", {
 			method: "POST",
 			body: assistant,
 		});
@@ -30,7 +30,7 @@ export const assistantsApi = {
 	 * @returns A promise that resolves with the assistant on success.
 	 */
 	async confirm(token: string) {
-		const response = await client(`assistants/confirm?token=${token}`, {
+		const response = await client(`assistants/confirm-email?token=${token}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
