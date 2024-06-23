@@ -4,11 +4,13 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { BasePage } from "./components/base-page";
+import { ErrorPage } from "./features/error/error-page";
 import "./index.css";
 
 const router = createBrowserRouter([
 	{
 		element: <BasePage />,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				path: "/",
@@ -25,7 +27,7 @@ const router = createBrowserRouter([
 				path: "/participants/:participantId",
 				lazy: async () => {
 					const { ParticipantPage } = await import(
-						"./features/home/pages/participant-page"
+						"./features/participants/pages/participant-page"
 					);
 
 					return {
