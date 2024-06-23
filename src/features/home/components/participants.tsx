@@ -36,7 +36,9 @@ export function Participants({
 								<div className="space-y-2">
 									<h3 className="font-medium">{participant.fullName}</h3>
 
-									<p className="text-muted-foreground">{participant.role}</p>
+									<p className="text-muted-foreground md:line-clamp-1">
+										{participant.role}
+									</p>
 								</div>
 							</Link>
 						</li>
