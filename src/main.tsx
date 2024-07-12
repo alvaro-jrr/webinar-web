@@ -48,6 +48,30 @@ const router = createBrowserRouter([
 				},
 			},
 			{
+				path: "/topics",
+				lazy: async () => {
+					const { TopicsPage } = await import(
+						"./features/topics/pages/topics-page"
+					);
+
+					return {
+						Component: TopicsPage,
+					};
+				},
+			},
+			{
+				path: "/topics/:id",
+				lazy: async () => {
+					const { TopicsDetail } = await import(
+						"./features/topics/pages/topics-detail"
+					);
+
+					return {
+						Component: TopicsDetail,
+					};
+				},
+			},
+			{
 				path: "/assistants/",
 				children: [
 					{

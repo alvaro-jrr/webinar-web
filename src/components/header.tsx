@@ -19,6 +19,14 @@ export function Header() {
 						>
 							Tutoriales
 						</NavLink>
+
+						<NavLink
+							to="/topics"
+							className="hidden text-foreground/60 transition-colors hover:text-foreground aria-[current=page]:text-foreground md:block"
+						>
+							Temas
+						</NavLink>
+
 					</div>
 
 					<div className="md:hidden">
@@ -26,6 +34,8 @@ export function Header() {
 							<DrawerItem title="Inscribirme" to="/assistants/enroll" />
 
 							<DrawerItem title="Tutoriales" to="/tutorials" />
+
+							<DrawerItem title="Temas" to="/topics" />
 						</Drawer>
 					</div>
 
